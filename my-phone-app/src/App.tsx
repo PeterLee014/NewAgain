@@ -4,8 +4,8 @@ import PointsInput from './components/PointsInput';
 import PointsSummary from './components/PointsSummary';
 import { database } from './firebaseConfig';
 import { ref, set, get, child } from 'firebase/database';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import Navbar from './components/Navbar';
+// import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const App: React.FC = () => {
   const [collectedPhone, setCollectedPhone] = useState<string | null>(null);
@@ -79,8 +79,7 @@ const App: React.FC = () => {
 
       {currentPage === 'phoneInput' && (
         <div>
-        <Navbar />
-          {/* <h2>Enter Phone Number</h2> */}
+          <Navbar />
           <PhoneInput onCollectPhoneNumber={handleCollectPhoneNumber} />
         </div>
       )}

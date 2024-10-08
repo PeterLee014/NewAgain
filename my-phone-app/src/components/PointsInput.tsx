@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap-icons/font/bootstrap-icons.css';
 import PointsSummary from './PointsSummary'; // Import the PointsSummary component
 
 interface PointsInputProps {
@@ -11,9 +11,15 @@ interface PointsInputProps {
   onBack: () => void; // Add a prop for the Back action
 }
 
-const PointsInput: React.FC<PointsInputProps> = ({ onSubmitPoints, totalPoints, phoneNumber, onDone, onBack }) => {
+const PointsInput: React.FC<PointsInputProps> = ({
+  onSubmitPoints,
+  totalPoints,
+  phoneNumber,
+  onDone,
+  onBack,
+}) => {
   const [points, setPoints] = useState('');
-  const [showSummary, setShowSummary] = useState(false); // State to manage the summary display
+  const [showSummary, setShowSummary] = useState(false);
 
   const appendPoints = (num: string) => {
     setPoints((prev) => prev + num);
@@ -25,9 +31,9 @@ const PointsInput: React.FC<PointsInputProps> = ({ onSubmitPoints, totalPoints, 
 
   const handleSubmitPoints = () => {
     if (points) {
-      onSubmitPoints(parseInt(points));
+      onSubmitPoints(parseInt(points, 10));
       clearPoints();
-      setShowSummary(true); // Show the summary after submitting points
+      setShowSummary(true);
     }
   };
 
@@ -35,35 +41,64 @@ const PointsInput: React.FC<PointsInputProps> = ({ onSubmitPoints, totalPoints, 
     <div className="container my-5 p-4 bg-light rounded shadow-sm position-relative">
       {!showSummary ? (
         <>
-          <div className="mb-3">
-            <h4 style={{fontSize: 30}}>Phone Number: {phoneNumber}</h4>
-            <h5 style={{fontSize: 30}}>Total Points: {totalPoints}</h5>
-            <h6 style={{fontSize: 30}}>Points Entered: {points}</h6>
+          <div className="mb-3 text-center">
+            <h4>Phone Number: {phoneNumber}</h4>
+            <h5>Total Points: {totalPoints}</h5>
+            <h6>Points Entered: {points}</h6>
           </div>
-          <div className="row g-2 mb-3">
+          <div className="d-flex flex-wrap justify-content-between mb-3">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-              <div key={num} className="col-4 mb-3 g-3">
+              <div key={num} className="col-4 mb-2" style={{ padding: '0.5rem' }}>
                 <button
-                  className="btn btn-primary w-100 p-5"
+                  className="btn btn-outline-primary w-100"
+                  style={{
+                    height: '60px',
+                    fontSize: '1.5rem',
+                    padding: '0.5rem',
+                  }}
                   onClick={() => appendPoints(String(num))}
                 >
                   {num}
                 </button>
               </div>
             ))}
-            <div className="col-4">
-              <button className="btn btn-danger w-100 p-5" onClick={clearPoints}>
-                Clear Points
+            <div className="col-4 mb-2" style={{ padding: '0.5rem' }}>
+              <button
+                className="btn btn-outline-danger w-100"
+                style={{
+                  height: '60px',
+                  fontSize: '1.5rem',
+                  padding: '0.5rem',
+                }}
+                onClick={clearPoints}
+              >
+                Clear
               </button>
             </div>
-            <div className="col-4">
-              <button className="btn btn-secondary w-100 p-5" onClick={() => appendPoints('0')}>
+            <div className="col-4 mb-2" style={{ padding: '0.5rem' }}>
+              <button
+                className="btn btn-outline-secondary w-100"
+                style={{
+                  height: '60px',
+                  fontSize: '1.5rem',
+                  padding: '0.5rem',
+                }}
+                onClick={() => appendPoints('0')}
+              >
                 0
               </button>
             </div>
-            <div className="col-4">
-              <button className="btn btn-success w-100 p-5" onClick={handleSubmitPoints}>
-                Submit Points
+            <div className="col-4 mb-2" style={{ padding: '0.5rem' }}>
+              <button
+                className="btn btn-outline-success w-100"
+                style={{
+                  height: '60px',
+                  fontSize: '1.5rem',
+                  padding: '0.5rem',
+                }}
+                onClick={handleSubmitPoints}
+              >
+                Submit
               </button>
             </div>
           </div>
