@@ -88,8 +88,8 @@ const PointsSummary: React.FC<PointsSummaryProps> = ({
             <p className="mt-3 text-danger">Not enough points to redeem.</p>
           )}
           <button
-            className="btn btn-secondary btn-lg mt-3"
-            style={{ width: '100%', maxWidth: '300px' }}
+            className="btn btn-secondary btn-lg p-3 mt-5 ms-3 mb-3"
+            style={{ width: '100%', maxWidth: '60%' }}
             onClick={onDone}
           >
             Done
